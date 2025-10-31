@@ -10,7 +10,8 @@
     "test": "echo \"Tests passed\"",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "node index.js"
   },
   "repository": {
     "type": "git",
