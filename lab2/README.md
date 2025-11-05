@@ -41,6 +41,7 @@ Student Notes System — це застосунок на платформі Node.
 
 ## 3. Взаємодія компонентів
 
+```text
 Користувач
 ↓
 CLI Module
@@ -50,6 +51,8 @@ Notes Module ↔ Subjects Module
 Users Module
 ↓
 Storage Module
+
+```
 
 CLI Module отримує команди користувача та передає їх відповідним модулям.
 Усі операції з даними виконуються через Storage Module.
