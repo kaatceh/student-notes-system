@@ -1,6 +1,7 @@
 const readline = require("readline");
 const sqlite3 = require("sqlite3");
 const { open } = require("sqlite");
+const notesService = require("./notesService");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -15,12 +16,8 @@ async function initDb() {
     driver: sqlite3.Database
   });
 
-  await db.exec(`
-    CREATE TABLE IF NOT EXISTS notes (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      text TEXT NOT NULL
-    )
-  `);
+  await notesService.createTable(db);
+
 }
 
 function showMenu() {
@@ -58,7 +55,7 @@ function handleMenu(choice) {
 }
 
 async function listNotes() {
-  const notes = await db.all("SELECT * FROM notes");
+  const notes = await notesService.getNotes(db);
   console.log("\nНотатки:");
   notes.forEach(n => console.log(`${n.id}: ${n.text}`));
   showMenu();
@@ -66,7 +63,7 @@ async function listNotes() {
 
 function addNote() {
   rl.question("Введіть текст нотатки: ", async text => {
-    await db.run("INSERT INTO notes (text) VALUES (?)", text);
+   await notesService.addNote(db, text);
     console.log("Нотатку додано");
     showMenu();
   });
@@ -75,7 +72,7 @@ function addNote() {
 function editNote() {
   rl.question("ID нотатки: ", id => {
     rl.question("Новий текст: ", async text => {
-      await db.run("UPDATE notes SET text = ? WHERE id = ?", text, Number(id));
+      await notesService.updateNote(db, Number(id), text);
       console.log("Оновлено");
       showMenu();
     });
@@ -84,7 +81,7 @@ function editNote() {
 
 function deleteNote() {
   rl.question("ID нотатки: ", async id => {
-    await db.run("DELETE FROM notes WHERE id = ?", Number(id));
+    await notesService.deleteNote(db, Number(id));
     console.log("Видалено");
     showMenu();
   });
