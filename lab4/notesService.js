@@ -8,19 +8,19 @@ async function createTable(db) {
 }
 
 async function addNote(db, text) {
-  return db.run("INSERT INTO notes (text) VALUES (?)", text);
+  return db.run('INSERT INTO notes (text) VALUES (?)', text);
 }
 
 async function getNotes(db) {
-  return db.all("SELECT * FROM notes");
+  return db.all('SELECT * FROM notes');
 }
 
 async function updateNote(db, id, text) {
-  return db.run("UPDATE notes SET text = ? WHERE id = ?", text, id);
+  return db.run('UPDATE notes SET text = ? WHERE id = ?', text, id);
 }
 
 async function deleteNote(db, id) {
-  return db.run("DELETE FROM notes WHERE id = ?", id);
+  return db.run('DELETE FROM notes WHERE id = ?', id);
 }
 
 module.exports = {
@@ -28,5 +28,5 @@ module.exports = {
   addNote,
   getNotes,
   updateNote,
-  deleteNote
+  deleteNote,
 };
