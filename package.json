@@ -2,14 +2,14 @@
   "name": "student-notes-system",
   "version": "1.0.0",
   "scripts": {
-  "format:check": "prettier --check .",
-  "format:write": "prettier --write .",
-  "lint": "eslint .",
-  "build": "echo \"CI build OK\"",
-  "build:ci": "npm run build",
-  "test": "jest",
-  "start": "node lab6/server.js"
-},
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint": "eslint .",
+    "build": "echo \"CI build OK\"",
+    "build:ci": "npm run build",
+    "test": "jest",
+    "start": "node lab6/server.js"
+  },
   "dependencies": {
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
