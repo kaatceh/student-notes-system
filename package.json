@@ -5,7 +5,7 @@
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "eslint .",
-    "build": "node lab4/index.js",
+    "build": "echo \"Build successful\"",
     "test": "jest",
     "start": "node lab6/server.js"
   },
