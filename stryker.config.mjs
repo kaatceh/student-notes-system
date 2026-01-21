@@ -3,7 +3,8 @@ export default {
   packageManager: 'npm',
   reporters: ['clear-text', 'progress'],
   coverageAnalysis: 'off',
-  mutate: ['lab4/**/*.js'],
+  mutate: ['src/services/**/*.js', 'src/repositories/**/*.js'],
+
   jest: {
     projectType: 'custom',
   },

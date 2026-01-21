@@ -28,8 +28,12 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Run tests
-        run: npm test
+      - name: Commitlint
+        if: github.event_name == 'pull_request'
+        run: npx --no-install commitlint --from=${{ github.event.pull_request.base.sha }} --to=${{ github.event.pull_request.head.sha }}
 
       - name: Build
         run: npm run build:ci
+
+      - name: Run tests
+        run: npm test

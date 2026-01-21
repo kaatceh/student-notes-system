@@ -8,7 +8,7 @@
     "build": "echo \"CI build OK\"",
     "build:ci": "npm run build",
     "test": "jest",
-    "start": "node lab6/server.js"
+    "start": "node src/index.js"
   },
   "dependencies": {
     "sqlite": "^5.1.1",
