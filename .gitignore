@@ -1,0 +1,7 @@
+node_modules/
+out/
+.env
+.DS_Store
+
+# stryker temp files
+.stryker-tmp

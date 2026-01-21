@@ -1,0 +1,7 @@
+@startuml
+entity "notes" {
+  +id : INTEGER <<PK>>
+  --
+  text : TEXT
+}
+@enduml

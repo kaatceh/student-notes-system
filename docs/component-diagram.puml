@@ -1,0 +1,24 @@
+@startuml
+package "CLI" {
+  component "index.js"
+}
+
+package "Routes" {
+  component "notesRoutes.js"
+}
+
+package "Services" {
+  component "notesService.js"
+}
+
+package "Repositories" {
+  component "notesRepository.js"
+}
+
+database "SQLite DB\n(db.sqlite)" as DB
+
+"index.js" --> "notesRoutes.js"
+"notesRoutes.js" --> "notesService.js"
+"notesService.js" --> "notesRepository.js"
+"notesRepository.js" --> DB
+@enduml
