@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
-const notesService = require('../../lab4/notesService');
+const notesService = require('../../src/services/notesService');
 
 test('E2E: повний сценарій додавання та читання нотатки', async () => {
   const db = await open({
@@ -8,7 +8,7 @@ test('E2E: повний сценарій додавання та читання 
     driver: sqlite3.Database,
   });
 
-  await notesService.createTable(db);
+  await notesService.init(db);
 
   await notesService.addNote(db, 'E2E note');
 
