@@ -1,35 +1,33 @@
-const notesRepository = require('../repositories/notesRepository');
+class NotesService {
+  constructor(repo) {
+    this.repo = repo;
+  }
 
-async function init(db) {
-  await notesRepository.createTable(db);
+  async init(db) {
+    await this.repo.createTable(db);
+  }
+
+  async addNote(db, text) {
+    const trimmed = String(text ?? '').trim();
+    if (!trimmed) throw new Error('Текст нотатки не може бути порожнім');
+    return this.repo.addNote(db, trimmed);
+  }
+
+  async getNotes(db) {
+    return this.repo.getNotes(db);
+  }
+
+  async updateNote(db, id, text) {
+    const trimmed = String(text ?? '').trim();
+    if (!Number.isInteger(id) || id <= 0) throw new Error('Некоректний ID');
+    if (!trimmed) throw new Error('Текст нотатки не може бути порожнім');
+    return this.repo.updateNote(db, id, trimmed);
+  }
+
+  async deleteNote(db, id) {
+    if (!Number.isInteger(id) || id <= 0) throw new Error('Некоректний ID');
+    return this.repo.deleteNote(db, id);
+  }
 }
 
-async function addNote(db, text) {
-  const trimmed = String(text ?? '').trim();
-  if (!trimmed) throw new Error('Текст нотатки не може бути порожнім');
-  return notesRepository.addNote(db, trimmed);
-}
-
-async function getNotes(db) {
-  return notesRepository.getNotes(db);
-}
-
-async function updateNote(db, id, text) {
-  const trimmed = String(text ?? '').trim();
-  if (!Number.isInteger(id) || id <= 0) throw new Error('Некоректний ID');
-  if (!trimmed) throw new Error('Текст нотатки не може бути порожнім');
-  return notesRepository.updateNote(db, id, trimmed);
-}
-
-async function deleteNote(db, id) {
-  if (!Number.isInteger(id) || id <= 0) throw new Error('Некоректний ID');
-  return notesRepository.deleteNote(db, id);
-}
-
-module.exports = {
-  init,
-  addNote,
-  getNotes,
-  updateNote,
-  deleteNote,
-};
+module.exports = NotesService;
