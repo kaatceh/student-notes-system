@@ -1,24 +1,25 @@
-const notesService = require('../services/notesService');
+const notesRepository = require('../repositories/notesRepository');
 
 async function listNotes(db) {
-  const notes = await notesService.getNotes(db);
-  console.log('\nНотатки:');
-  notes.forEach((n) => console.log(`${n.id}: ${n.text}`));
+  const notes = await notesRepository.getNotes(db);
+  notes.forEach(n => console.log(`${n.id}: ${n.text}`));
 }
 
 async function addNote(db, text) {
-  await notesService.addNote(db, text);
-  console.log('Нотатку додано');
+  await notesRepository.addNote(db, text);
 }
 
 async function editNote(db, id, text) {
-  await notesService.updateNote(db, Number(id), text);
-  console.log('Оновлено');
+  await notesRepository.updateNote(db, Number(id), text);
 }
 
 async function removeNote(db, id) {
-  await notesService.deleteNote(db, Number(id));
-  console.log('Видалено');
+  await notesRepository.deleteNote(db, Number(id));
 }
 
-module.exports = { listNotes, addNote, editNote, removeNote };
+module.exports = {
+  listNotes,
+  addNote,
+  editNote,
+  removeNote,
+};

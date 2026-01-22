@@ -1,6 +1,10 @@
 const readline = require('readline');
 const { openDb } = require('./db/sqlite');
-const notesService = require('./services/notesService');
+
+const NotesService = require('./services/notesService');
+const notesRepository = require('./repositories/notesRepository');
+const notesService = new NotesService(notesRepository);
+
 const notesRoutes = require('./routes/notesRoutes');
 
 const rl = readline.createInterface({
