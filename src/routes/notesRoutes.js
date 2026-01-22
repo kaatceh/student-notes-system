@@ -2,7 +2,7 @@ const notesRepository = require('../repositories/notesRepository');
 
 async function listNotes(db) {
   const notes = await notesRepository.getNotes(db);
-  notes.forEach(n => console.log(`${n.id}: ${n.text}`));
+  notes.forEach((n) => console.log(`${n.id}: ${n.text}`));
 }
 
 async function addNote(db, text) {
